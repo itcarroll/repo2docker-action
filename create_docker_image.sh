@@ -60,8 +60,6 @@ fi
 shortSHA=$(echo "${GITHUB_SHA}" | cut -c1-12)
 SHA_NAME="${INPUT_IMAGE_NAME}:${shortSHA}"
 
-# Attempt to pull the image for a cached build
-docker pull "${INPUT_IMAGE_NAME}" 2> /dev/null || true
 echo "::endgroup::"
 
 # Print variables for debugging
