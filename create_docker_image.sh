@@ -125,7 +125,7 @@ fi
 jupyter-repo2docker --no-run --user-id 1000 --user-name ${NB_USER} \
     --target-repo-dir ${REPO_DIR} --image-name ${SHA_NAME} \
 	--cache-from "type=registry,ref=${INPUT_IMAGE_NAME}:buildcache" \
-	--Repo2Docker.extra_build_args "cache-to=type=registry,ref=${INPUT_IMAGE_NAME}:buildcache,mode=max" \
+	--cache-to "type=registry,ref=${INPUT_IMAGE_NAME}:buildcache,mode=max" \
     --label "repo2docker.repo=https://github.com/${GITHUB_REPOSITORY}" \
     --label "repo2docker.ref=${GITHUB_REF}" \
     --appendix "$APPENDIX" ${INPUT_REPO2DOCKER_EXTRA_ARGS} ${PWD}
