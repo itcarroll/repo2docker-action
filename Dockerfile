@@ -9,6 +9,9 @@ RUN python3 -m pip install --upgrade wheel setuptools
 # is released, we want to use an older version of docker-py
 RUN pip install 'docker!=7.0.0'
 
+# system configuration
+COPY ./docker/etc /etc
+
 # https://stackoverflow.com/a/41651363/1695486
 RUN apk add --no-cache curl curl-dev
 COPY create_docker_image.sh /create_docker_image.sh
