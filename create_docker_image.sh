@@ -122,6 +122,8 @@ fi
 # arguments to be passed to repo2docker.
 # Explicitly specify repo and ref labels, as repo2docker only knows it is building something
 # local.
+docker info -f '{{ .DriverStatus }}'
+
 jupyter-repo2docker --no-run --user-id 1000 --user-name ${NB_USER} \
     --target-repo-dir ${REPO_DIR} --image-name ${SHA_NAME} \
 	--DockerEngine.extra_buildx_build_args="--cache-from=type=registry,ref=${INPUT_IMAGE_NAME}:buildcache" \
