@@ -86,6 +86,12 @@ echo "IMAGE_SHA_NAME=${SHA_NAME}" >> $GITHUB_OUTPUT
 echo "IMAGE_SHA_TAG=${shortSHA}" >> $GITHUB_OUTPUT
 
 
+echo "::group::Debug"
+cat /etc/docker/daemon.json
+docker info -f '{{ .DriverStatus }}'
+echo "::endgroup::"
+
+
 echo "::group::Build ${SHA_NAME}"
 # Install specific version of repo2docker if required
 if [ ! -z "${INPUT_FORCE_REPO2DOCKER_VERSION}" ]; then
@@ -122,7 +128,6 @@ fi
 # arguments to be passed to repo2docker.
 # Explicitly specify repo and ref labels, as repo2docker only knows it is building something
 # local.
-docker info -f '{{ .DriverStatus }}'
 
 jupyter-repo2docker --no-run --user-id 1000 --user-name ${NB_USER} \
     --target-repo-dir ${REPO_DIR} --image-name ${SHA_NAME} \
